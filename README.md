@@ -28,6 +28,12 @@ brew install tinygo
   node test/go-office-executor.js
   ```
 
+- ~~tinygo~~
+
+  ```bash
+  todo
+  ```
+
 # References
 
 - [Node.js with WebAssembly](https://nodejs.dev/zh-cn/learn/nodejs-with-webassembly/#generating-webassembly-modules)
