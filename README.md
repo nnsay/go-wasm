@@ -31,7 +31,15 @@ brew install tinygo
 - ~~tinygo~~
 
   ```bash
-  todo
+  node --experimental-wasi-unstable-preview1 test/node-office-executor.js
+  ```
+
+  throw error:
+
+  ```bash
+  const instance = await WebAssembly.instantiate(wasm, importObject);
+                                     ^
+  TypeError: WebAssembly.instantiate(): Import #0 module="go" error: module is not an object or function
   ```
 
 # References
