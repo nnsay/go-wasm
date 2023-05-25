@@ -16,15 +16,17 @@ brew install tinygo
 - tinygo
 
   ```bash
-  todo
+  tinygo build -target=wasi -o ./wasm/tiny-main.wasm tiny-main.go
   ```
 
 # Test
 
-```bash
-cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./assets
-node test/go-office-executor.js
-```
+- go
+
+  ```bash
+  cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./assets
+  node test/go-office-executor.js
+  ```
 
 # References
 
