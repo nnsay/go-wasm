@@ -1,24 +1,31 @@
-# 安装 TinyGO
+# Install TinyGO
 
 ```bash
 brew tap tinygo-org/tools
 brew install tinygo
 ```
 
-# 编译
+# Build
+
+- go
+
+  ```bash
+  GOOS=js GOARCH=wasm go build -o wasm/main.wasm
+  ```
+
+- tinygo
+
+  ```bash
+  todo
+  ```
+
+# Test
 
 ```bash
-GOOS=js GOARCH=wasm go build -o main.wasm
+cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./assets
+node test/go-office-executor.js
 ```
 
-# 执行
-
-```bash
-cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./
-$(go env GOROOT)/misc/wasm/go_js_wasm_exec main.wasm
-node test.js
-```
-
-# 文档
+# References
 
 - [Node.js with WebAssembly](https://nodejs.dev/zh-cn/learn/nodejs-with-webassembly/#generating-webassembly-modules)
