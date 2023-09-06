@@ -16,7 +16,7 @@ brew install tinygo
 - tinygo
 
   ```bash
-  tinygo build -target=wasi -o ./wasm/tiny-main.wasm tiny-main.go
+  ./tinygo-getting-started/setup.sh
   ```
 
 # References
