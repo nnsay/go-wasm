@@ -1,8 +1,15 @@
 package main
 
-// This calls a JS function from Go.
+import (
+	"fmt"
+)
+
 func main() {
-	println("adding two numbers:", add(2, 3)) // expecting 5
+	fmt.Println("👋 Hello World 🌍")
+	fmt.Printf("test add function %d\n", add(2, 3))
+	// prevent the function from returning,
+	// which is required in a wasm module
+	<-make(chan bool)
 }
 
 // This function is imported from JavaScript, as it doesn't define a body.

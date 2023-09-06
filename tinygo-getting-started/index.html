@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="wasm_exec.js"></script>
+    <!--
+      The `wasm_exec.js` file is provided by the GoLang project. 
+      It's a set of JavaScript helper functions which are called from WebAssembly.
+      Ensure you are using the same version of `wasm_exec.js` as the version of Go you are using to compile.
+
+      Use this command to get it:
+      ```
+      cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" .
+      ```
+      
+      **Remark**: `WebAssembly.instantiateStreaming` is the JavaScript API that allows to load the wasm file.
+      
+    -->
+  </head>
+  <body>
+    <h1>WASM Experiments</h1>
+    <script>
+      // This is a polyfill for FireFox and Safari
+      if (!WebAssembly.instantiateStreaming) {
+        WebAssembly.instantiateStreaming = async (resp, importObject) => {
+          const source = await (await resp).arrayBuffer();
+          return await WebAssembly.instantiate(source, importObject);
+        };
+      }
+
+      // Load the wasm file
+      const execMain = async () => {
+        const go = new Go();
+        go.importObject.env.add = function (x, y) {
+          return x + y;
+        };
+        const result = await WebAssembly.instantiateStreaming(
+          fetch("main.wasm"),
+          go.importObject
+        );
+        globalThis.wasm = result.instance.exports;
+        await go.run(result.instance);
+      };
+      const execGoFn = () => {
+        const result = globalThis.wasm.multiply(5, 3);
+        console.log("call go multiply result: %d", result);
+      };
+    </script>
+
+    <button onclick="execMain()">Execute Main</button>
+    <button onclick="execGoFn()">Execute Go Function</button>
+  </body>
+</html>
