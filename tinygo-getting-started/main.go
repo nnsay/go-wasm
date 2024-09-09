@@ -24,5 +24,5 @@ func add(x, y int) int
 //
 //export multiply
 func multiply(x, y int) int {
-	return x * y
+	return x*y + add(x, y)
 }
